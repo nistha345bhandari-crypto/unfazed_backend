@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unfazed Test Payment</title>
+</head>
+
+<body>
+
+    <h2>Unfazed Test Payment</h2>
+
+    <button id="payBtn">
+        Pay ₹1500
+    </button>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        document.getElementById("payBtn").onclick = function () {
+
+            const options = {
+                key: "rzp_test_Tc9IRHK1JgxkSm",
+
+                amount: 150000,
+
+                currency: "INR",
+
+                name: "Unfazed",
+
+                description: "3 Session Therapy Package",
+
+                order_id: "order_TeVYnBrJYXYt45",
+
+                handler: function (response) {
+
+                    console.log("PAYMENT SUCCESS");
+                    console.log(response);
+
+                    alert(
+                        "Payment successful!\n\nPayment ID: "
+                        + response.razorpay_payment_id
+                    );
+                },
+
+                prefill: {
+                    name: "Roni",
+                    email: "roni@gmail.com"
+                },
+
+                theme: {
+                    color: "#6c5ce7"
+                }
+            };
+
+            const razorpay = new Razorpay(options);
+
+            razorpay.open();
+        };
+    </script>
+
+</body>
+</html>
